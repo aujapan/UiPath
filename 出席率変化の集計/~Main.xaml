@@ -96,9 +96,7 @@
                         <WriteLine DisplayName="1 行を書き込み" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[item]" />
                         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="ワークフロー ファイルを呼び出し" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="月次処理.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="処理月">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
-                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="処理月">[item]</InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                       </Sequence>

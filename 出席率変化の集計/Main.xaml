@@ -64,18 +64,18 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="693,857" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="実行" sap:VirtualizedContainerService.HintSize="681,857" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ParallelForEach x:TypeArguments="x:String" DisplayName="並列繰り返し (コレクションの各要素)" sap:VirtualizedContainerService.HintSize="651,765" sap2010:WorkflowViewState.IdRef="ParallelForEach`1_1" Values="[Workbook.getsheets]">
+            <ParallelForEach x:TypeArguments="x:String" DisplayName="並列繰り返し (コレクションの各要素)" sap:VirtualizedContainerService.HintSize="639,765" sap2010:WorkflowViewState.IdRef="ParallelForEach`1_1" Values="[Workbook.getsheets]">
               <ActivityAction x:TypeArguments="x:String">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="601,618" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="589,618" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:Boolean" Name="結果" />
                   </Sequence.Variables>
@@ -84,19 +84,21 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:IsMatch DisplayName="文字列の一致をチェック" sap:VirtualizedContainerService.HintSize="559,59" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[item]" IsBuilderTabModified="False" Pattern="[４-８]月" RegexOption="IgnoreCase, Compiled" Result="[結果]" />
-                  <If Condition="[結果]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="559,427" sap2010:WorkflowViewState.IdRef="If_1">
+                  <ui:IsMatch DisplayName="文字列の一致をチェック" sap:VirtualizedContainerService.HintSize="547,59" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[item]" IsBuilderTabModified="False" Pattern="[４-８]月" RegexOption="IgnoreCase, Compiled" Result="[結果]" />
+                  <If Condition="[結果]" DisplayName="条件分岐" sap:VirtualizedContainerService.HintSize="547,427" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
-                      <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="388,280" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <Sequence DisplayName="シーケンス" sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_4">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <WriteLine DisplayName="1 行を書き込み" sap:VirtualizedContainerService.HintSize="346,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[item]" />
-                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" WorkflowFileName="{x:Null}" DisplayName="ワークフロー ファイルを呼び出し" sap:VirtualizedContainerService.HintSize="346,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False">
+                        <WriteLine DisplayName="1 行を書き込み" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[item]" />
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="ワークフロー ファイルを呼び出し" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="月次処理.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                            <InArgument x:TypeArguments="x:String" x:Key="処理月">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
+                            </InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
                       </Sequence>
